@@ -1,4 +1,6 @@
 # TensorFlow and tf.keras
+#かぼちゃの種分類用に、A,A,C,D（重なり）の4種類に分類する。
+#ZIP内には、ABCD
 import tensorflow as tf
 from tensorflow import keras
 from sklearn.model_selection import train_test_split
@@ -29,8 +31,8 @@ shutil.unpack_archive(zipfile[0], 'images')
 X = []
 Y = []
 
-# BADの画像#
-images0 = glob.glob(os.path.join('/content/images/bad', "*.jpg"))
+# Aランクの画像#
+images0 = glob.glob(os.path.join('/content/images/A', "*.jpg"))
 targetsize=(128,128)
 
 for i in range(len(images0)):
@@ -51,10 +53,10 @@ for i in range(len(images0)):
     X.append(img_to_array(img7))
     X.append(img_to_array(img8))
     Y.extend([0, 0, 0, 0, 0, 0, 0, 0])
-print("1/3 BAD Load" ,i,  len(X))
+print("1/4 A rank Load" ,i,  len(X))
 
-# Goodの画像
-images1 = glob.glob(os.path.join('/content/images/good', "*.jpg"))
+# Bランクの画像
+images1 = glob.glob(os.path.join('/content/images/B', "*.jpg"))
 for i in range(len(images1)):
     img = img_to_array(load_img(images1[i], grayscale=False, target_size=targetsize))
     img2 = cv2.flip(img, 0)
@@ -74,7 +76,30 @@ for i in range(len(images1)):
     X.append(img_to_array(img8))
     Y.extend([1, 1, 1, 1, 1, 1, 1, 1])
 
-print("2/3 Good Load", i, len(X))
+print("2/4 B rank Load", i, len(X))
+
+# Cランクの画像
+images1 = glob.glob(os.path.join('/content/images/C', "*.jpg"))
+for i in range(len(images1)):
+    img = img_to_array(load_img(images1[i], grayscale=False, target_size=targetsize))
+    img2 = cv2.flip(img, 0)
+    img3 = cv2.flip(img, 1)
+    img4 = cv2.flip(img, 2)
+    img5 = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
+    img6 = cv2.rotate(img2, cv2.ROTATE_90_CLOCKWISE)
+    img7 = cv2.rotate(img3, cv2.ROTATE_90_CLOCKWISE)
+    img8 = cv2.rotate(img4, cv2.ROTATE_90_CLOCKWISE)
+    X.append(img_to_array(img))
+    X.append(img_to_array(img2))
+    X.append(img_to_array(img3))
+    X.append(img_to_array(img4))
+    X.append(img_to_array(img5))
+    X.append(img_to_array(img6))
+    X.append(img_to_array(img7))
+    X.append(img_to_array(img8))
+    Y.extend([2,2,2,2, 2,2,2,2])
+
+print("3/4 C rank Load", i, len(X))
 
 # Doubleの画像
 images4 = glob.glob(os.path.join('/content/double', "*.jpg"))
@@ -96,7 +121,7 @@ for i in range(len(images4)):
     X.append(img_to_array(img7))
     X.append(img_to_array(img8))
     Y.extend([4, 4, 4, 4, 4, 4, 4, 4])
-print("3/3 Double Load",i, len(X))
+print("4/4 Double Load",i, len(X))
 
 # arrayに変換
 X = np.asarray(X)
@@ -167,7 +192,7 @@ val_loss=history.history['val_loss']
 epochs = range(1, len(loss)+1)
 
 # 利用ログの送信
-payload = {'starttime': now , 'userid': zipfile[0][:-4] , 'elaptime': elapsed_time , 'epoch': len(loss), 'googimg': len(images1),
+payload = {'starttime': now , 'userid': "P" + zipfile[0][:-4] , 'elaptime': elapsed_time , 'epoch': len(loss), 'googimg': len(images1),
            'badimg': len(images0), 'val_loss': val_loss, 'val_acc': val_acc , 'test_acc': test_acc}
 response = requests.get(
             "https://script.google.com/macros/s/AKfycbwV5ov8Y-PovXhbWrnhOQk01SrJ0TE875w8nUp2aJMVi9zT7LsR9enJud0qa-Gl-bxf/exec",
