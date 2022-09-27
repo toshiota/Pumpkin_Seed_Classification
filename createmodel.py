@@ -102,7 +102,7 @@ for i in range(len(images1)):
 print("3/4 C rank Load", i, len(X))
 
 # Doubleの画像
-images4 = glob.glob(os.path.join('/content/double', "*.jpg"))
+images4 = glob.glob(os.path.join('/content/images/double', "*.jpg"))
 for i in range(len(images4)):
     img = img_to_array(load_img(images4[i], grayscale=False, target_size=targetsize))
     img2 = cv2.flip(img, 0)
