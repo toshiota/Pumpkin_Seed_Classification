@@ -184,13 +184,13 @@ print("elapsed_time:{0}".format(elapsed_time) + "[sec]")
 
 #　Evaluate accuracy
 test_loss, test_acc = model.evaluate(test_images, test_labels)
-print('学習精度val_acc': val_acc)
+
 acc= history.history['acc']
 val_acc=history.history['val_acc']
 loss= history.history['loss']
 val_loss=history.history['val_loss']
 epochs = range(1, len(loss)+1)
-
+print('学習精度val_acc:' ,  val_acc)
 # 利用ログの送信
 payload = {'starttime': now , 'userid': "P" + zipfile[0][:-4] , 'elaptime': elapsed_time , 'epoch': len(loss), 'googimg': len(images1),
            'badimg': len(images0), 'val_loss': val_loss, 'val_acc': val_acc , 'test_acc': test_acc}
