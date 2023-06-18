@@ -54,7 +54,7 @@ for i in range(len(images0)):
     X.append(tf.keras.utils.img_to_array(img7))
     X.append(tf.keras.utils.img_to_array(img8))
     Y.extend([0, 0, 0, 0, 0, 0, 0, 0])
-print("1/4 BAD Load" ,i,  len(X))
+print("1/4 A Load" ,i,  len(X))
 
 # Bの画像
 images1 = glob.glob(os.path.join('/content/images/B', "*.jpg"))
@@ -77,7 +77,7 @@ for i in range(len(images1)):
     X.append(tf.keras.utils.img_to_array(img8))
     Y.extend([1, 1, 1, 1, 1, 1, 1, 1])
 
-print("2/4 Good Load", i, len(X))
+print("2/4 B Load", i, len(X))
 
 # Cの画像
 images1 = glob.glob(os.path.join('/content/images/C', "*.jpg"))
@@ -100,7 +100,7 @@ for i in range(len(images1)):
     X.append(tf.keras.utils.img_to_array(img8))
     Y.extend([2, 2, 2, 2, 2, 2, 2, 2])
 
-print("3/4 Good Load", i, len(X))
+print("3/4 C Load", i, len(X))
 
 # Doubleの画像
 images4 = glob.glob(os.path.join('/content/D', "*.jpg"))
@@ -122,7 +122,7 @@ for i in range(len(images4)):
     X.append(tf.keras.utils.img_to_array(img7))
     X.append(tf.keras.utils.img_to_array(img8))
     Y.extend([4, 4, 4, 4, 4, 4, 4, 4])
-print("4/4 Double Load",i, len(X))
+print("4/4 D Load",i, len(X))
 
 # arrayに変換
 X = np.asarray(X)
