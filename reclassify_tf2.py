@@ -57,22 +57,22 @@ for i in range(1, len(images)):
     Score0 = (predictions_real * 100)
     if predicted_label == 0:
         image_path = '分類済/A/' + str(round(Score0[0, predicted_label], 0)) + "_"
-        label = "   bad"
+        label = " A"
         cv2.imwrite(image_path + str(i) + "a.jpg", img_src)
 
     elif predicted_label == 1:
         image_path = '分類済/B/' + str(round(Score0[0, predicted_label], 0)) + "_"
-        label = "  good"
+        label = " B"
         cv2.imwrite(image_path + str(i) + "b.jpg", img_src)
         
     elif predicted_label == 2:
         image_path = '分類済/C/' + str(round(Score0[0, predicted_label], 0)) + "_"
-        label = "  good"
+        label = " C"
         cv2.imwrite(image_path + str(i) + "c.jpg", img_src)
 
     elif predicted_label == 4:
         image_path = '分類済/D/' + str(round(Score0[0, predicted_label], 0)) + "_"
-        label = "double"
+        label = " D"
         cv2.imwrite(image_path + str(i) + "d.jpg", img_src)
 
     print(i, " ■Result: ", label, "  ■Probability: ", str(round(Score0[0, predicted_label], 1)), " %")
