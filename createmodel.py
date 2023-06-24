@@ -103,7 +103,7 @@ for i in range(len(images1)):
 print("3/4 C Load", i, len(X))
 
 # Doubleの画像
-images4 = glob.glob(os.path.join('/content/D', "*.jpg"))
+images4 = glob.glob(os.path.join('/content/images/D', "*.jpg"))
 for i in range(len(images4)):
     img = tf.keras.utils.img_to_array((tf.keras.utils.load_img(images4[i], grayscale=False, target_size=targetsize)))
     img2 = cv2.flip(img, 0)
