@@ -170,9 +170,17 @@ model.add(tf.keras.layers.Dense(5, activation='softmax'))
 #callback設定
 savefilename =  now.strftime('%Y%m%d_%H%M') +zipfile[0][:-4] +'.h5' 
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ファイル名！！！！
-callbacklist= [tf.keras.callbacks.EarlyStopping(monitor='val_accuracy',patience=30),
-               tf.keras.callbacks.ModelCheckpoint(filepath=savefilename,monitor='val_loss', min_delta=0.001,mode='min',verbose=1,save_best_only=True, ),]
-               #tf.keras.callbacks.ReduceLROnPlateau(monitor='val_loss',factor=0.1, patience=10 ,)]
+callbacklist = [
+    tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=20, verbose=1),
+    tf.keras.callbacks.ModelCheckpoint(
+        filepath=savefilename,
+        monitor='val_loss',
+        min_delta=0.001,
+        mode='min',
+        verbose=1,
+        save_best_only=True
+    ),
+]
 
 model.compile(loss='binary_crossentropy', optimizer='rmsprop',  metrics=['accuracy'])
 
