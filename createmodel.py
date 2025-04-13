@@ -37,7 +37,7 @@ images0 = glob.glob(os.path.join('/content/images/A', "*.jpg"))
 targetsize=(128,128)
 print(len(images0))
 for i in range(len(images0)):
-    img = tf.keras.utils.img_to_array((tf.keras.utils.load_img(images0[i], grayscale=False, target_size=targetsize)))
+    img = tf.keras.utils.img_to_array((tf.keras.utils.load_img(images0[i], color_mode='rgb', target_size=targetsize)))
     img2 = cv2.flip(img, 0)
     img3 = cv2.flip(img, 1)
     img4 = cv2.flip(img, 2)
@@ -59,7 +59,7 @@ print("1/4 A Load" ,i,  len(X))
 # Bの画像
 images1 = glob.glob(os.path.join('/content/images/B', "*.jpg"))
 for i in range(len(images1)):
-    img = tf.keras.utils.img_to_array((tf.keras.utils.load_img(images1[i], grayscale=False, target_size=targetsize)))
+    img = tf.keras.utils.img_to_array((tf.keras.utils.load_img(images1[i], color_mode='rgb', target_size=targetsize)))
     img2 = cv2.flip(img, 0)
     img3 = cv2.flip(img, 1)
     img4 = cv2.flip(img, 2)
@@ -82,7 +82,7 @@ print("2/4 B Load", i, len(X))
 # Cの画像
 images1 = glob.glob(os.path.join('/content/images/C', "*.jpg"))
 for i in range(len(images1)):
-    img = tf.keras.utils.img_to_array((tf.keras.utils.load_img(images1[i], grayscale=False, target_size=targetsize)))
+    img = tf.keras.utils.img_to_array((tf.keras.utils.load_img(images1[i], color_mode='rgb', target_size=targetsize)))
     img2 = cv2.flip(img, 0)
     img3 = cv2.flip(img, 1)
     img4 = cv2.flip(img, 2)
@@ -105,7 +105,7 @@ print("3/4 C Load", i, len(X))
 # Doubleの画像
 images4 = glob.glob(os.path.join('/content/images/D', "*.jpg"))
 for i in range(len(images4)):
-    img = tf.keras.utils.img_to_array((tf.keras.utils.load_img(images4[i], grayscale=False, target_size=targetsize)))
+    img = tf.keras.utils.img_to_array((tf.keras.utils.load_img(images4[i], color_mode='rgb', target_size=targetsize)))
     img2 = cv2.flip(img, 0)
     img3 = cv2.flip(img, 1)
     img4 = cv2.flip(img, 2)
